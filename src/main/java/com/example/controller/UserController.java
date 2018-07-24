@@ -19,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/select")
     @ResponseBody
-    public String selectUserById(Integer id) {
-        return userService.selectUserById(id).getName();
+    public User selectUserById(Integer id) {
+        return userService.selectUserById(id);
     }
 }

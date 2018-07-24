@@ -18,13 +18,13 @@
     <!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage"
-                  value="com.example.dao" />
+                  value="com.example.dao"/>
     </bean>
 
     <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
     </bean>
 </beans>

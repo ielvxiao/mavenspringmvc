@@ -12,4 +12,8 @@
     <select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
         SELECT * FROM user WHERE id = #{id}
     </select>
+    <insert id="addUser" parameterType="com.example.domain.User">
+        INSERT INTO user(name,age) values (#{name},#{age})
+    </insert>
+
 </mapper>

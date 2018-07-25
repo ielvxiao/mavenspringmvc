@@ -15,7 +15,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 通过ID查询用户
+     * @param id
+     * @return
+     */
     public User selectUserById(Integer id) {
         return userDao.selectUserById(id);
+    }
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    public Integer addUser(User user) {
+        return userDao.addUser(user);
     }
 }

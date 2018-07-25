@@ -22,4 +22,10 @@ public class UserController {
     public User selectUserById(Integer id) {
         return userService.selectUserById(id);
     }
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public Integer addUser(User user) {
+        return userService.addUser(user);
+    }
 }

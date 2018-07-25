@@ -4,8 +4,11 @@ package com.example.domain;
  * Created by lvxiao on 2018/7/24.
  */
 public class User {
+    //id
     private Integer id;
+    //姓名
     private String name;
+    //年龄
     private Integer age;
 
     public User() {

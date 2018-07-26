@@ -12,6 +12,7 @@ public class TestController {
     public String index() {
         return "index";
     }
+
     @RequestMapping(value = "/test")
     public String jsp() {
         return "test";

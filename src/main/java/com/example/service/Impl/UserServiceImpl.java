@@ -15,6 +15,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    public Integer updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
     /**
      * 通过ID查询用户
      * @param id
@@ -30,6 +34,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Integer addUser(User user) {
+        System.out.println(user.getName());
         return userDao.addUser(user);
     }
 }

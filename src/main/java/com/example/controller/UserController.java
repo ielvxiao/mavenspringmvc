@@ -28,4 +28,10 @@ public class UserController {
     public Integer addUser(User user) {
         return userService.addUser(user);
     }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Integer updateUser(User user) {
+        return userService.updateUser(user);
+    }
 }

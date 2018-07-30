@@ -15,5 +15,8 @@
     <insert id="addUser" parameterType="com.example.domain.User">
         INSERT INTO user(name,age) values (#{name},#{age})
     </insert>
+    <update id="updateUser" parameterType="com.example.domain.User">
+        update user(name,age) values (#{name},#{age}) where id= #{id}
+    </update>
 
 </mapper>

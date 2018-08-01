@@ -3,6 +3,8 @@ package com.example.service.Impl;
 import com.example.dao.UserDao;
 import com.example.domain.User;
 import com.example.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
+
+    public Integer updateUser(User user) {
+        return userDao.updateUser(user);
+    }
 
     /**
      * 通过ID查询用户
@@ -21,6 +29,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User selectUserById(Integer id) {
+        LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);
     }
 
@@ -30,6 +39,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Integer addUser(User user) {
+        System.out.println(user.getName());
         return userDao.addUser(user);
     }
 }

@@ -11,4 +11,6 @@ public interface UserDao {
     User selectUserById(Integer id);
 
     Integer addUser(User user);
+
+    Integer updateUser(User user);
 }

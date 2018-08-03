@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Integer addUser(User user) {
-        System.out.println(user.getName());
+        LOGGER.debug("添加的用户为{}",user.getName());
         return userDao.addUser(user);
     }
 }

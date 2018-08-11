@@ -15,6 +15,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <druid.version>1.1.10</druid.version>
         <aspectjweaver.version>1.8.1</aspectjweaver.version>
+        <cxf.version>3.2.5</cxf.version>
     </properties>
 
     <build>
@@ -210,6 +211,19 @@
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
+
+        <!-- webservice依赖框架CXF -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- webservice依赖框架CXF -->
 
     </dependencies>
 

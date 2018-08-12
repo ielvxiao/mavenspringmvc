@@ -7,7 +7,7 @@ public class TestWebServiceImpl implements TestWebService{
 
     @Override
     public String say() {
-        return "这是我的第一个webservice测试";
+        return "say";
     }
 
     @Override

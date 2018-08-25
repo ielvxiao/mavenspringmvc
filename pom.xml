@@ -66,6 +66,8 @@
                 <configuration>
                     <!-- http://maven.apache.org/plugins/maven-war-plugin/ -->
                     <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+                    <!--这个参数可以指定打包名称 test.war-->
+                    <warName>test</warName>
                 </configuration>
             </plugin>
         </plugins>
@@ -229,13 +231,26 @@
 
     <profiles>
         <profile>
-            <id>jd</id>
+            <id>google</id>
             <properties>
                 <package.environment>jd</package.environment>
                 <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
                 <mvn.jdbc.url>jdbc:mysql://localhost:3306/user_db</mvn.jdbc.url>
                 <mvn.jdbc.username>root</mvn.jdbc.username>
-                <mvn.jdbc.password>root</mvn.jdbc.password>
+                <mvn.jdbc.password>tiptop</mvn.jdbc.password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>jd</id>
+            <properties>
+                <package.environment>jd</package.environment>
+                <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
+                <mvn.jdbc.url>jdbc:mysql://35.201.207.143:3306/user_db</mvn.jdbc.url>
+                <mvn.jdbc.username>root</mvn.jdbc.username>
+                <mvn.jdbc.password>tiptop</mvn.jdbc.password>
             </properties>
         </profile>
         <profile>

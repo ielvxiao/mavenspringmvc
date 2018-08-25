@@ -70,7 +70,7 @@
     在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-cxf.xml</param-value>
+        <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
 

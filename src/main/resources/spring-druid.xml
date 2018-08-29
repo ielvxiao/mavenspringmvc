@@ -6,7 +6,7 @@
     <!-- 配置数据源 -->
 
     <!-- 配置druid数据源 -->
-    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean name="baseDataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <!-- 数据库连接基础信息 -->
         <property name="url" value="${mvn.jdbc.url}" />
@@ -27,7 +27,7 @@
             name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
 
         <!-- 验证数据库连接有效性，要求查询语句 -->
-        <property name="validationQuery" value="${validationQuery}" />
+        <property name="validationQuery" value="SELECT 'x'" />
         <!-- 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
         <property name="testWhileIdle" value="true" />
         <!-- 申请连接时执行validationQuery检测连接是否有效，配置true会降低性能。 -->
@@ -52,6 +52,11 @@
         <property name="filters" value="stat" />
     </bean>
 
+    <!-- 配置数据源 -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource" ref="baseDataSource" />
+    </bean>
     <!-- 配置druid监控spring jdbc -->
     <bean id="druid-stat-interceptor"
           class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
@@ -64,22 +69,4 @@
             </list>
         </property>
     </bean>
-    <aop:config>
-        <aop:advisor advice-ref="druid-stat-interceptor"
-                     pointcut-ref="druid-stat-pointcut" />
-    </aop:config>
-
-    <!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"
-                  value="com.example.dao"/>
-    </bean>
-
-    <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
-    </bean>
-
 </beans>

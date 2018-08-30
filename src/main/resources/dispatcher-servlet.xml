@@ -9,7 +9,7 @@
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
 
-    <import resource="spring-druid.xml"/>
+
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven>
         <mvc:message-converters>

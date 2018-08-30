@@ -243,9 +243,9 @@
             <properties>
                 <package.environment>home</package.environment>
                 <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
-                <mvn.jdbc.url>jdbc:mysql://192.168.0.101:3306/test</mvn.jdbc.url>
+                <mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306/user_db</mvn.jdbc.url>
                 <mvn.jdbc.username>root</mvn.jdbc.username>
-                <mvn.jdbc.password>root</mvn.jdbc.password>
+                <mvn.jdbc.password>tiptop</mvn.jdbc.password>
             </properties>
         </profile>
     </profiles>

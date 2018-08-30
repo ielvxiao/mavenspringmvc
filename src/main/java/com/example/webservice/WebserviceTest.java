@@ -1,5 +1,6 @@
 package com.example.webservice;
 
+import com.example.domain.User;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 
 /**
@@ -9,8 +10,12 @@ public class WebserviceTest {
     public static void main(String[] args) {
         JaxWsProxyFactoryBean factoryBean = new JaxWsProxyFactoryBean();
         factoryBean.setServiceClass(TestWebService.class);
-        factoryBean.setAddress("http://localhost:8888/cxf/test");
+        factoryBean.setAddress("http://localhost:8888/cxf/test?wsdl");
         TestWebService testWebService = (TestWebService) factoryBean.create();
-        System.out.println(testWebService.selectUserById(1).getName());
+        User user = new User();
+        user.setId(1);
+        user.setAge(28);
+        user.setName("吕啸");
+        System.out.println(testWebService.updateUser(user));
     }
 }

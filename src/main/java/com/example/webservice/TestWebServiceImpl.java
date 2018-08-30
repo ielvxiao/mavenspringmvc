@@ -1,5 +1,6 @@
 package com.example.webservice;
 
+import com.example.dao.UserDao;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,12 +16,12 @@ import javax.jws.soap.SOAPBinding;
 public class TestWebServiceImpl implements TestWebService {
 
     @Autowired
-    private UserService userService;
+    private UserDao userDao;
 
     @WebMethod
     @Override
     public String say() {
-        return userService.selectUserById(1).getName();
+        return userDao.selectUserById(1).getName();
     }
 
     @WebMethod

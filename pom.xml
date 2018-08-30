@@ -258,7 +258,7 @@
                 <package.environment>home</package.environment>
                 <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
                 <mvn.jdbc.url>jdbc:mysql://localhost:3306/test</mvn.jdbc.url>
-                <jdbc.username>root</jdbc.username>
+                <mvn.jdbc.username>root</mvn.jdbc.username>
                 <mvn.jdbc.password>tiptop</mvn.jdbc.password>
             </properties>
         </profile>

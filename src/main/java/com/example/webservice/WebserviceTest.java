@@ -11,6 +11,6 @@ public class WebserviceTest {
         factoryBean.setServiceClass(TestWebService.class);
         factoryBean.setAddress("http://localhost:8888/cxf/test");
         TestWebService testWebService = (TestWebService) factoryBean.create();
-        System.out.println(testWebService.say());
+        System.out.println(testWebService.selectUserById(1).getName());
     }
 }

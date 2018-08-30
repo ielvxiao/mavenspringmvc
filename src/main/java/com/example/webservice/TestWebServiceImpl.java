@@ -1,7 +1,7 @@
 package com.example.webservice;
 
 import com.example.dao.UserDao;
-import com.example.service.UserService;
+import com.example.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -28,5 +28,20 @@ public class TestWebServiceImpl implements TestWebService {
     @Override
     public void write() {
         System.out.println("调用了write");
+    }
+
+    @Override
+    public User selectUserById(Integer id) {
+        return userDao.selectUserById(id);
+    }
+
+    @Override
+    public Integer addUser(User user) {
+        return userDao.addUser(user);
+    }
+
+    @Override
+    public Integer updateUser(User user) {
+        return userDao.updateUser(user);
     }
 }

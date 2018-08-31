@@ -1,3 +1,3 @@
 # 一些针对sprig mvc的练习
 
-配置方式参考了：https://github.com/KevinYounGa/spring4-mybatis3-cxf3-maven/blob/master/spring_mvc_cxf-server/src/main/resources/spring/spring-mvc.xml
+## 之前出现的问题主要是把druid设置在了dispatcher-servlet.xml里了，所以我们要弄明白applicationContext和dispatcher-servlet的区别。

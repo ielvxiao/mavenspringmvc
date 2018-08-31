@@ -27,6 +27,10 @@ public class ErrorController {
     @RequestMapping("500")
     public String handle3(HttpServletRequest request) {
         return BASE_DIR + "500";
+    }
 
+    @RequestMapping("error")
+    public String handleAll(HttpServletRequest request) {
+        return BASE_DIR + "error";
     }
 }

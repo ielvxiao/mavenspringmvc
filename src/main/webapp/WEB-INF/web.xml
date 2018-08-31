@@ -121,6 +121,6 @@
     <!--</error-page>-->
     <!--为了简便，我们使用统一的error page-->
     <error-page>
-        <location>/error/400</location>
+        <location>/error/error</location>
     </error-page>
 </web-app>

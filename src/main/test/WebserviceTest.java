@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by lvxiao on 2018/8/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/dispatcher-servlet.xml","/spring-cxf.xml"})
+@ContextConfiguration(locations = {"/applicationContext.xml"})
 public class WebserviceTest {
 
     private TestWebService testWebService;

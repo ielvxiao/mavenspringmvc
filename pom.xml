@@ -234,7 +234,7 @@
             <properties>
                 <package.environment>jd</package.environment>
                 <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
-                <mvn.jdbc.url>jdbc:mysql://localhost:3306/user_db</mvn.jdbc.url>
+                <mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306/user_db</mvn.jdbc.url>
                 <mvn.jdbc.username>root</mvn.jdbc.username>
                 <mvn.jdbc.password>tiptop</mvn.jdbc.password>
             </properties>

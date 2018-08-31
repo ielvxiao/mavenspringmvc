@@ -221,7 +221,7 @@
                     <!-- http://maven.apache.org/plugins/maven-war-plugin/ -->
                     <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
                     <!--这个参数可以指定打包名称 test.war-->
-                    <warName>test</warName>
+                    <warName>webservice</warName>
                 </configuration>
             </plugin>
         </plugins>

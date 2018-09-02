@@ -1,6 +1,5 @@
 import com.example.webservice.TestWebService;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +21,7 @@ public class WebserviceTest {
         factoryBean.setServiceClass(TestWebService.class);
         factoryBean.setAddress("http://localhost:8888/cxf/test?wsdl");
         testWebService = (TestWebService) factoryBean.create();
+
     }
     @Test
     public void test1() {

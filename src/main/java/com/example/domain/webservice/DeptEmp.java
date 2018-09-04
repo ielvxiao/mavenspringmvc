@@ -3,45 +3,45 @@ package com.example.domain.webservice;
 
 public class DeptEmp {
 
-  private long empNo;
-  private String deptNo;
-  private java.sql.Date fromDate;
-  private java.sql.Date toDate;
+    private long empNo;
+    private String deptNo;
+    private java.sql.Date fromDate;
+    private java.sql.Date toDate;
 
 
-  public long getEmpNo() {
-    return empNo;
-  }
+    public long getEmpNo() {
+        return empNo;
+    }
 
-  public void setEmpNo(long empNo) {
-    this.empNo = empNo;
-  }
-
-
-  public String getDeptNo() {
-    return deptNo;
-  }
-
-  public void setDeptNo(String deptNo) {
-    this.deptNo = deptNo;
-  }
+    public void setEmpNo(long empNo) {
+        this.empNo = empNo;
+    }
 
 
-  public java.sql.Date getFromDate() {
-    return fromDate;
-  }
+    public String getDeptNo() {
+        return deptNo;
+    }
 
-  public void setFromDate(java.sql.Date fromDate) {
-    this.fromDate = fromDate;
-  }
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo;
+    }
 
 
-  public java.sql.Date getToDate() {
-    return toDate;
-  }
+    public java.sql.Date getFromDate() {
+        return fromDate;
+    }
 
-  public void setToDate(java.sql.Date toDate) {
-    this.toDate = toDate;
-  }
+    public void setFromDate(java.sql.Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+
+    public java.sql.Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(java.sql.Date toDate) {
+        this.toDate = toDate;
+    }
 
 }

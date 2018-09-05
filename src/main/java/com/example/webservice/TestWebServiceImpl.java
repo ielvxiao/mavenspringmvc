@@ -30,16 +30,19 @@ public class TestWebServiceImpl implements TestWebService {
         System.out.println("调用了write");
     }
 
+    @WebMethod
     @Override
     public User selectUserById(Integer id) {
         return userDao.selectUserById(id);
     }
 
+    @WebMethod
     @Override
     public Integer addUser(User user) {
         return userDao.addUser(user);
     }
 
+    @WebMethod
     @Override
     public Integer updateUser(User user) {
         return userDao.updateUser(user);

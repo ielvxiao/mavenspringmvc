@@ -1,15 +1,14 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by lvxiao on 2018/8/30.
  */
-@Controller
-@RequestMapping("error")
+@RestController("error")
 public class ErrorController {
 
     private static final String BASE_DIR = "error/";

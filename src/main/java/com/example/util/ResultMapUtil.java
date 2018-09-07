@@ -1,6 +1,7 @@
 package com.example.util;
 
 import com.example.dao.EmployeeDao;
+import com.example.domain.webservice.Departments;
 import com.example.domain.webservice.Employee;
 
 import java.lang.reflect.Field;
@@ -102,6 +103,6 @@ public class ResultMapUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(ResultMapUtil.getResultMap(Employee.class));
+        System.out.println(ResultMapUtil.getResultMap(Departments.class));
     }
 }

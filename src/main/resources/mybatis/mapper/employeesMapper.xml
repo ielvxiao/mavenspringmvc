@@ -17,7 +17,7 @@
     </select>
 
     <select id="selectEmployeeById" resultMap="employeeMap">
-        select * from employees where id = {#id}
+        select * from employees where emp_no=#{id}
     </select>
     <select id="selectEmployeeByIds" resultMap="employeeMap">
         select * from employees where emp_no in

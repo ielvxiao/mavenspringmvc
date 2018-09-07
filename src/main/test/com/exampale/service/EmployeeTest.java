@@ -22,10 +22,6 @@ public class EmployeeTest {
     @Autowired
     private EmployeeService employeeService;
 
-
-
-
-
     @Test
     public void selectEmployeeByIds() {
         List<Integer> list = new ArrayList<>();
@@ -37,5 +33,11 @@ public class EmployeeTest {
              ) {
             System.out.println(employee);
         }
+    }
+
+    @Test
+    public void selectEmployeeById() {
+        Employee employee = employeeService.selectEmployeeById(10001);
+        System.out.println(employee);
     }
 }

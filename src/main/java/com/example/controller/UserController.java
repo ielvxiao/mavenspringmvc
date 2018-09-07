@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.domain.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by lvxiao on 2018/7/24.
  */
-@RestController("/user")
+@Controller
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

@@ -17,6 +17,6 @@
     <select id="selectDepartmentById" resultMap="selectDepartmentById">
         select e.*,d.dept_name from employees e left join dept_emp emp on e.emp_no = emp.emp_no
          left join departments d on emp.dept_no = d.dept_no
-         where d.dept_no=#{dept_no} limit 10;
+         where d.dept_no=#{dept_no};
     </select>
 </mapper>

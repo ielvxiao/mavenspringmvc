@@ -1,8 +1,11 @@
 package com.example.domain.webservice;
 
 
-public class Salaries {
+import java.io.Serializable;
 
+public class Salaries implements Serializable {
+
+    private static final long serialVersionUID = 302066778546343045L;
     private long empNo;
     private long salary;
     private java.sql.Date fromDate;

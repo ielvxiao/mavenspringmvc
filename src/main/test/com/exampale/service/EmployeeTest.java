@@ -38,6 +38,5 @@ public class EmployeeTest {
     @Test
     public void selectEmployeeById() {
         Employee employee = employeeService.selectEmployeeById(10001);
-        System.out.println(employee);
     }
 }

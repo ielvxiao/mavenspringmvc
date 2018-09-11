@@ -4,6 +4,7 @@ import com.example.dao.EmployeeDao;
 import com.example.domain.webservice.Employee;
 import com.example.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee selectEmployeeById(int id) {
+    public Employee  selectEmployeeById(int id) {
+        System.out.println("~~~~~这个应该是没有使用缓存~~~~~~");
         return employeeDao.selectEmployeeById(id);
     }
 

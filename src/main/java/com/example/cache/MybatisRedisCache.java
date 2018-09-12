@@ -48,19 +48,8 @@ public class MybatisRedisCache implements Cache {
 
     @Override
     public int getSize() {
-        int result = 0;
-        RedisConnection connection = null;
-        try {
-            connection = jedisConnectionFactory.getConnection();
-            result = Integer.valueOf(connection.dbSize().toString());
-        } catch (JedisConnectionException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                connection.close();
-            }
-        }
-        return result;
+
+        return (int) RedisCache.size();
     }
 
     @Override

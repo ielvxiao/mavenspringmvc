@@ -116,9 +116,9 @@ public class RedisCache{
      * (non-Javadoc)
      * @see org.springframework.cache.Cache#put(java.lang.Object, java.lang.Object)
      */
-    public static void put(final Object key, final Object value) {
+    public static boolean put(final Object key, final Object value) {
         if (StringUtils.isEmpty(key) || StringUtils.isEmpty(value)) {
-            return;
+            return false;
         } else {
             final String finalKey;
             if (key instanceof String) {
@@ -128,7 +128,7 @@ public class RedisCache{
             }
             if (!StringUtils.isEmpty(finalKey)) {
                 final Object finalValue = value;
-                redisTemplate.execute(new RedisCallback<Boolean>() {
+                return (boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
                     @Override
                     public Boolean doInRedis(RedisConnection connection) {
                         connection.set(finalKey.getBytes(), SerializableUtil.serialize(finalValue));
@@ -139,6 +139,7 @@ public class RedisCache{
                 });
             }
         }
+        return false;
     }
 
     public static void putIfAbsent(Object o, Object o1) {
@@ -170,7 +171,7 @@ public class RedisCache{
     }
 
     /*
-     * 清楚系统缓存
+     * 清除系统缓存
      */
     public static void clear() {
          redisTemplate.execute(new RedisCallback<String>() {
@@ -179,6 +180,15 @@ public class RedisCache{
          return "ok";
          }
          });
+    }
+
+    public static long size() {
+        return (Long) redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                return redisConnection.dbSize();
+            }
+        });
     }
 
     public static RedisTemplate<String, Object> getRedisTemplate() {

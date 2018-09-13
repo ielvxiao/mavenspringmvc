@@ -10,7 +10,7 @@
                ">
 
     <!-- scanner redis properties  -->
-    <context:property-placeholder location="classpath:property/redis.properties"/>
+    <context:property-placeholder location="classpath*:property/redis.properties" ignore-unresolvable="true"/>
 
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxIdle" value="${redis.maxIdle}"/>
@@ -37,18 +37,7 @@
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>
     </bean>
-    <!--为了区别shiro中引用的id="cacheManager"-->
-    <!--<bean id="redisCacheManager" class="org.springframework.cache.support.SimpleCacheManager">-->
-    <!--<property name="caches">-->
-    <!--<set>-->
-    <!--<bean class="com.example.cache.RedisCache">-->
-    <!--<property name="name" value="skyCache"/>-->
-    <!--<property name="redisTemplate" ref="redisTemplate"/>-->
-    <!--<property name="timeout" value="6000"/>-->
-    <!--</bean>-->
-    <!--</set>-->
-    <!--</property>-->
-    <!--</bean>-->
+
     <bean class="com.example.cache.RedisCache">
         <property name="name" value="skyCache"/>
         <property name="redisTemplate" ref="redisTemplate"/>

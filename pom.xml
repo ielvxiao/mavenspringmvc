@@ -259,10 +259,10 @@
             <id>google</id>
             <properties>
                 <package.environment>jd</package.environment>
-                <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
-                <mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306/employees</mvn.jdbc.url>
-                <mvn.jdbc.username>root</mvn.jdbc.username>
-                <mvn.jdbc.password>tiptop</mvn.jdbc.password>
+                <!--<mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>-->
+                <!--<mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306</mvn.jdbc.url>-->
+                <!--<mvn.jdbc.username>root</mvn.jdbc.username>-->
+                <!--<mvn.jdbc.password>tiptop</mvn.jdbc.password>-->
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

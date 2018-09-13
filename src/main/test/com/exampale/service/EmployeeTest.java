@@ -25,7 +25,7 @@ public class EmployeeTest {
     @Test
     public void selectEmployeeByIds() {
         List<Integer> list = new ArrayList<>();
-        for (int i = 10000; i < 100010; i++) {
+        for (int i = 10500; i < 10550; i++) {
             list.add(i);
         }
         List<Employee> employees = employeeService.selectEmployeeByIds(list);

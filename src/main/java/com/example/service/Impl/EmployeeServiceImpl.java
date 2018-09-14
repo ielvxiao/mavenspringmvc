@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    public static final String CACHE_NAME = "cache1";
+    public static final String CACHE_NAME = "employee";
     @Autowired
     private EmployeeDao employeeDao;
 
@@ -24,14 +24,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDao.selectEmployeeByIds(ids);
     }
 
-    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME")
+    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME + #id")
     @Override
     public Employee  selectEmployeeById(int id) {
         System.out.println("~~~~~这个应该是没有使用缓存~~~~~~");
         return employeeDao.selectEmployeeById(id);
     }
 
-    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME")
+    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME + #id")
     @Override
     public Employee test(int id) {
         System.out.println("这个是测试对比");

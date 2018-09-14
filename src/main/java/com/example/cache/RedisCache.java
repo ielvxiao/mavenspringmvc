@@ -2,6 +2,7 @@ package com.example.cache;
 
 import com.example.util.SerializableUtil;
 import org.springframework.cache.Cache;
+import org.springframework.cache.support.SimpleValueWrapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -13,28 +14,29 @@ import java.io.*;
 /**
  * Created by tl on 17/2/28.
  */
-public class RedisCache{
+public class RedisCache implements Cache {
 
     /**
      * Redis
      */
-    private static RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 缓存名称
      */
-    private static String name;
+    private String name;
 
     /**
      * 超时时间
      */
-    private static long timeout;
+    private long timeout;
 
 
     /*
      * (non-Javadoc)
      * @see org.springframework.cache.Cache#getName()
      */
+    @Override
     public String getName() {
         return this.name;
     }
@@ -43,6 +45,7 @@ public class RedisCache{
      * (non-Javadoc)
      * @see org.springframework.cache.Cache#getNativeCache()
      */
+    @Override
     public Object getNativeCache() {
         // TODO Auto-generated method stub
         return this.redisTemplate;
@@ -53,7 +56,8 @@ public class RedisCache{
      * (non-Javadoc)
      * @see org.springframework.cache.Cache#get(java.lang.Object)
      */
-    public static Object get(Object key) {
+    @Override
+    public ValueWrapper get(Object key) {
         if (StringUtils.isEmpty(key)) {
             return null;
         } else {
@@ -74,7 +78,7 @@ public class RedisCache{
                     return SerializableUtil.unserialize(value);
                 }
             });
-            return object;
+            return (object != null ? new SimpleValueWrapper(object) : null);
         }
     }
 
@@ -83,7 +87,8 @@ public class RedisCache{
      * @see org.springframework.cache.Cache#get(java.lang.Object, java.lang.Class)
      */
     @SuppressWarnings("unchecked")
-    public static <T> T get(Object key, Class<T> type) {
+    @Override
+    public <T> T get(Object key, Class<T> type) {
         if (StringUtils.isEmpty(key) || null == type) {
             return null;
         } else {
@@ -116,9 +121,10 @@ public class RedisCache{
      * (non-Javadoc)
      * @see org.springframework.cache.Cache#put(java.lang.Object, java.lang.Object)
      */
-    public static boolean put(final Object key, final Object value) {
+    @Override
+    public void put(final Object key, final Object value) {
         if (StringUtils.isEmpty(key) || StringUtils.isEmpty(value)) {
-            return false;
+            return;
         } else {
             final String finalKey;
             if (key instanceof String) {
@@ -128,7 +134,7 @@ public class RedisCache{
             }
             if (!StringUtils.isEmpty(finalKey)) {
                 final Object finalValue = value;
-                return (boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
+                redisTemplate.execute(new RedisCallback<Boolean>() {
                     @Override
                     public Boolean doInRedis(RedisConnection connection) {
                         connection.set(finalKey.getBytes(), SerializableUtil.serialize(finalValue));
@@ -139,18 +145,19 @@ public class RedisCache{
                 });
             }
         }
-        return false;
     }
 
-    public static void putIfAbsent(Object o, Object o1) {
+    @Override
+    public ValueWrapper putIfAbsent(Object o, Object o1) {
         put(o, o1);
+        return new SimpleValueWrapper(o1);
     }
 
     /*
      * 根据Key 删除缓存
      */
-    public static Object evict(Object key) {
-        Object o = null;
+    @Override
+    public void evict(Object key) {
         if (null != key) {
             final String finalKey;
             if (key instanceof String) {
@@ -159,21 +166,20 @@ public class RedisCache{
                 finalKey = key.toString();
             }
             if (!StringUtils.isEmpty(finalKey)) {
-                o = redisTemplate.execute(new RedisCallback<Long>() {
+                redisTemplate.execute(new RedisCallback<Long>() {
                     public Long doInRedis(RedisConnection connection) throws DataAccessException {
                         return connection.del(finalKey.getBytes());
                     }
                 });
             }
-            return o;
         }
-        return o;
     }
 
     /*
-     * 清除系统缓存
+     * 清楚系统缓存
      */
-    public static void clear() {
+    @Override
+    public void clear() {
          redisTemplate.execute(new RedisCallback<String>() {
          public String doInRedis(RedisConnection connection) throws DataAccessException {
          connection.flushDb();
@@ -182,16 +188,7 @@ public class RedisCache{
          });
     }
 
-    public static long size() {
-        return (Long) redisTemplate.execute(new RedisCallback() {
-            @Override
-            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
-                return redisConnection.dbSize();
-            }
-        });
-    }
-
-    public static RedisTemplate<String, Object> getRedisTemplate() {
+    public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
     }
 

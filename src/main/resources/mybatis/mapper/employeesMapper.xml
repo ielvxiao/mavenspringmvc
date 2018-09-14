@@ -7,7 +7,7 @@
     <!--size指缓存多少个对象，默认值为1024-->
     <!--readOnly是否只读，如果为true，则所有相同的sql语句返回的是同一个对象（有助于提高性能，但并发操作同一条数据时，可能不安全），如果设置为false，则相同的sql，后面访问的是cache的clone副本。-->
     <!--blocking： 若缓存中找不到对应的key，是否会一直blocking，直到有对应的数据进入缓存。-->
-    <cache type="com.example.cache.MybatisRedisCache" eviction="LRU" flushInterval="60000" size="2"/>
+    <!--<cache type="com.example.cache.MybatisRedisCache"/>-->
     <resultMap id="employeeMap" type="com.example.domain.webservice.Employee">
         <result column="emp_no" jdbcType="BIGINT" property="empNo" />
         <result column="birth_date" jdbcType="DATE" property="birthDate" />
@@ -22,6 +22,9 @@
     </select>
 
     <select id="selectEmployeeById" resultMap="employeeMap" >
+        select * from employees where emp_no=#{id}
+    </select>
+    <select id="test" resultMap="employeeMap" >
         select * from employees where emp_no=#{id}
     </select>
     <select id="selectEmployeeByIds" resultMap="employeeMap">

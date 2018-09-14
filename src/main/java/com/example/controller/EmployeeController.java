@@ -30,4 +30,10 @@ public class EmployeeController {
     public Employee selectEmployeeById(int id) {
         return employeeService.selectEmployeeById(id);
     }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public Employee test(int id) {
+        return employeeService.test(id);
+    }
 }

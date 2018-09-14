@@ -12,5 +12,7 @@ public interface EmployeeDao {
 
     Employee selectEmployeeById(int id);
 
+    Employee test(int id);
+
     List<Employee> selectEmployeeByIds(List<Integer> ids);
 }

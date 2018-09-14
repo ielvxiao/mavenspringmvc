@@ -10,5 +10,6 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> selectAllEmployees();
     Employee selectEmployeeById(int id);
+    Employee test(int id);
     List<Employee> selectEmployeeByIds(List<Integer> ids);
 }

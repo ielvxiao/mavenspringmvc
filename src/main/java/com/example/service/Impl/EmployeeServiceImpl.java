@@ -23,10 +23,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDao.selectEmployeeByIds(ids);
     }
 
+//    @Cacheable(key = "select + #id")
     @Override
     public Employee  selectEmployeeById(int id) {
         System.out.println("~~~~~这个应该是没有使用缓存~~~~~~");
         return employeeDao.selectEmployeeById(id);
+    }
+
+//    @Cacheable(key = "select + #id")
+    @Override
+    public Employee test(int id) {
+        System.out.println("这个是测试对比");
+        return employeeDao.test(id);
     }
 
     @Override

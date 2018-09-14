@@ -1,9 +1,7 @@
 package com.example.cache;
 
 import org.apache.ibatis.cache.Cache;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

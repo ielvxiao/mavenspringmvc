@@ -29,8 +29,3 @@ redis通过key去匹配缓存
         LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);
     }
-
-如果selectUserById使用相同的key，则就会出现问题，当查询user的时候
-会返回employee的缓存，但是由于类不同，所以发生类型转换错误。
-
-

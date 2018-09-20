@@ -104,7 +104,7 @@ public class RedisCache{
                     return SerializableUtil.unserialize(value);
                 }
             });
-            if (finalType != null && finalType.isInstance(object) && null != object) {
+            if (finalType.isInstance(object)) {
                 return (T) object;
             } else {
                 return null;

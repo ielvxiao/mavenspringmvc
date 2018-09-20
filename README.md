@@ -29,3 +29,4 @@ redis通过key去匹配缓存
         LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);
     }
+添加cacheable后会出现使用aspect的时候命中缓存，则不执行aspect的问题

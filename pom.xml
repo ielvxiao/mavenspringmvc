@@ -112,11 +112,11 @@
             <version>${aspectj.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjrt</artifactId>-->
+            <!--<version>${aspectj.version}</version>-->
+        <!--</dependency>-->
 
         <!--其他需要的包-->
         <dependency>

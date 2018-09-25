@@ -6,6 +6,7 @@ import com.example.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    public static final String CACHE_NAME = "user";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -28,6 +31,7 @@ public class UserServiceImpl implements UserService {
      * @param id
      * @return
      */
+    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME + #id")
     public User selectUserById(Integer id) {
         LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);

@@ -10,10 +10,10 @@
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
-    <!--启用spring的一些annotation -->
-    <context:annotation-config/>
+    <!--启用spring的一些annotation 使用component-scan显示启用了annotation-config-->
+    <!--<context:annotation-config/>-->
 
-    <import resource="spring-druid.xml"/>
+
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven>
         <mvc:message-converters>

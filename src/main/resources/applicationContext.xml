@@ -60,7 +60,7 @@
     <!-- 配置事务控制位置，一般在业务层service -->
     <aop:config expose-proxy="true">
         <aop:pointcut id="txPointcut"
-                      expression="execution(* com.exampale.*.service..*.*(..))" />
+                      expression="execution(* com.example.*.service..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
     </aop:config>
 

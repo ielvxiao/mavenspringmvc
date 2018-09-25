@@ -141,4 +141,12 @@
             <aop:after method="setDataSourceMaster" pointcut-ref="2"/>
         </aop:aspect>
     </aop:config>
+
+    <!--<bean id="test001" class="com.example.aop.SpringTest"/>-->
+    <!--<aop:config>-->
+        <!--<aop:aspect id="aspect1" ref="test001">-->
+            <!--<aop:pointcut id="1" expression="execution(* *..UserService*.*(..))"/>-->
+            <!--<aop:before method="doBefore" pointcut-ref="1"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 </beans>

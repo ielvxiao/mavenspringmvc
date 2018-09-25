@@ -103,8 +103,6 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -194,41 +192,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--不同环境下的profile的配置-->
-    <profiles>
-        <profile>
-            <id>google</id>
-            <properties>
-                <package.environment>jd</package.environment>
-                <!--<mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>-->
-                <!--<mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306</mvn.jdbc.url>-->
-                <!--<mvn.jdbc.username>root</mvn.jdbc.username>-->
-                <!--<mvn.jdbc.password>tiptop</mvn.jdbc.password>-->
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <!--<profile>-->
-            <!--<id>jd</id>-->
-            <!--<properties>-->
-                <!--<package.environment>jd</package.environment>-->
-                <!--<mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>-->
-                <!--<mvn.jdbc.url>jdbc:mysql://lvxiao.test.com:3306/user_db</mvn.jdbc.url>-->
-                <!--<mvn.jdbc.username>root</mvn.jdbc.username>-->
-                <!--<mvn.jdbc.password>tiptop</mvn.jdbc.password>-->
-            <!--</properties>-->
-        <!--</profile>-->
-        <!--<profile>-->
-            <!--<id>home</id>-->
-            <!--<properties>-->
-                <!--<package.environment>home</package.environment>-->
-                <!--<mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>-->
-                <!--<mvn.jdbc.url>jdbc:mysql://localhost:3306/test</mvn.jdbc.url>-->
-                <!--<mvn.jdbc.username>root</mvn.jdbc.username>-->
-                <!--<mvn.jdbc.password>tiptop</mvn.jdbc.password>-->
-            <!--</properties>-->
-        <!--</profile>-->
-    </profiles>
 </project>

@@ -80,11 +80,4 @@
     <cache:annotation-driven cache-manager="redisCacheManager"/>
 
     <bean id="test001" class="com.example.aop.SpringTest"/>
-    <aop:config>
-        <aop:aspect id="aspect1" ref="test001">
-            <aop:pointcut id="1" expression="execution(* *..UserService*.*(..))"/>
-            <aop:before method="doBefore" pointcut-ref="1"/>
-            <aop:after method="doAfter" pointcut-ref="1"/>
-        </aop:aspect>
-    </aop:config>
 </beans>

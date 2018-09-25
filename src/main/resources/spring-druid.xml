@@ -134,19 +134,18 @@
         </property>
     </bean>
     <bean id="dataSourceInterceptor" class="com.example.aop.DataSourceInterceptor"/>
+    <bean id="springTest" class="com.example.aop.SpringTest"/>
+
     <aop:config>
         <aop:aspect id="datasourceAspect" ref="dataSourceInterceptor">
             <aop:pointcut id="2" expression="execution(* *..User*.*(..))"/>
             <aop:before method="setDataSourceSLAVE" pointcut-ref="2"/>
             <aop:after method="setDataSourceMaster" pointcut-ref="2"/>
         </aop:aspect>
+        <aop:aspect id="springtest" ref="springTest">
+            <aop:pointcut id="userServicePointCut" expression="execution(* *..UserService*.*(..))"/>
+            <aop:before method="doBefore" pointcut-ref="userServicePointCut"/>
+            <aop:after method="doAfter" pointcut-ref="userServicePointCut"/>
+        </aop:aspect>
     </aop:config>
-
-    <!--<bean id="test001" class="com.example.aop.SpringTest"/>-->
-    <!--<aop:config>-->
-        <!--<aop:aspect id="aspect1" ref="test001">-->
-            <!--<aop:pointcut id="1" expression="execution(* *..UserService*.*(..))"/>-->
-            <!--<aop:before method="doBefore" pointcut-ref="1"/>-->
-        <!--</aop:aspect>-->
-    <!--</aop:config>-->
 </beans>

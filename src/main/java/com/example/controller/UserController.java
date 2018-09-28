@@ -35,4 +35,10 @@ public class UserController {
     public Integer updateUser(User user) {
         return userService.updateUser(user);
     }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Integer deleteUser(Integer id) {
+        return userService.deleteUser(id);
+    }
 }

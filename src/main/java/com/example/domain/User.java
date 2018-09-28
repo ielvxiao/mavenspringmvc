@@ -6,6 +6,15 @@ import java.io.Serializable;
  * Created by lvxiao on 2018/7/24.
  */
 public class User implements Serializable {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     private static final long serialVersionUID = 1094006574213095147L;
     //id
     private Integer id;

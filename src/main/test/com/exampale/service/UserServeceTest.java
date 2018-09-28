@@ -20,15 +20,24 @@ public class UserServeceTest {
     private UserService userService;
 
     @Test
-    public void testSelectUserById() {
-        User user = userService.selectUserById(1);
-        Assert.assertNotNull("is not null", user);
-        Assert.assertEquals("lvxiao", user.getName());
+    public void addUser() {
+        User user = new User(11, "id11", 11);
+        userService.addUser(user);
     }
 
     @Test
-    public void testInsertUser() {
-        User user = new User(0, "id0", 20);
-        Assert.assertEquals(1, Long.parseLong(userService.addUser(user)+""));
+    public void selectUserById() {
+    userService.selectUserById(11);
+    }
+
+    @Test
+    public void updateUser() {
+        User user = new User(11, "id11_update", 11);
+        userService.updateUser(user);
+    }
+
+    @Test
+    public void deleteUser() {
+        userService.deleteUser(11);
     }
 }

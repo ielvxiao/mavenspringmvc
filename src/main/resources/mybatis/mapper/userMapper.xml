@@ -13,10 +13,13 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
     <insert id="addUser" parameterType="com.example.domain.User">
-        INSERT INTO user(name,age) values (#{name},#{age})
+        INSERT INTO user(id,name,age) values (#{id},#{name},#{age})
     </insert>
     <update id="updateUser" parameterType="com.example.domain.User">
         update user set name = #{name},age = #{age} where id= #{id}
+    </update>
+    <update id="deleteUser" parameterType="com.example.domain.User">
+        delete from user where id= #{id}
     </update>
 
 </mapper>

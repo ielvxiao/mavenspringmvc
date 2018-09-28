@@ -1,13 +1,20 @@
 package com.example.service.Impl;
 
+import com.example.cache.RedisCache;
 import com.example.dao.UserDao;
 import com.example.domain.User;
+import com.example.redis.RedisCacheUtil;
 import com.example.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * Created by lvxiao on 2018/7/24.
@@ -22,8 +29,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    private RedisCache redisCache;
+
     public Integer updateUser(User user) {
         return userDao.updateUser(user);
+    }
+
+    @CacheEvict(value = "User", beforeInvocation=true, key = "'User' + #id")
+    @Override
+    public Integer deleteUser(Integer id) {
+        return userDao.deleteUser(id);
     }
 
     /**
@@ -31,7 +46,7 @@ public class UserServiceImpl implements UserService {
      * @param id
      * @return
      */
-    @Cacheable(value = "skyCache",key = "#root.target.CACHE_NAME + #id")
+    @Cacheable(value = "User",key = "'User' + #id")
     public User selectUserById(Integer id) {
         LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);
@@ -42,8 +57,10 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
+    @CacheEvict(value = "User", key = "'User' + #user.getId()", beforeInvocation = true)
     public Integer addUser(User user) {
-        LOGGER.debug("添加的用户为{}",user.getName());
+        LOGGER.debug("添加的用户id为{}",user.getId());
+        redisCache.put("User" + user.getId(), user);
         return userDao.addUser(user);
     }
 }

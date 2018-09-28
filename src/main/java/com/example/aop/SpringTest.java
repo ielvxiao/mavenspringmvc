@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 /**
  * Created by lvxiao on 2018/9/18.
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class SpringTest {
     @Pointcut(value = "execution(* *..UserService*.*(..))")
     public void pointCut() {

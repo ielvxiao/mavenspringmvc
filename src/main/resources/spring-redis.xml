@@ -42,7 +42,7 @@
         <property name="caches">
             <set>
                 <bean class="com.example.cache.RedisCache">
-                    <property name="name" value="skyCache"/>
+                    <property name="name" value="User"/>
                     <property name="redisTemplate" ref="redisTemplate"/>
                     <property name="timeout" value="6000"/>
                 </bean>

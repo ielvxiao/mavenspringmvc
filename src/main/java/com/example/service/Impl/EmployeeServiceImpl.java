@@ -34,15 +34,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> selectEmployeeByIds(List<Integer> ids) {
         List<Employee> employees = employeeDao.selectEmployeeByIds(ids);
-        redisTemplate.execute(new RedisCallback<Object>() {
-            @Override
-            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
-                for (Employee employee: employees
-                     ) {
-                    redisConnection.set(("Employee" +employee.getEmpNo()).getBytes(), SerializableUtil.serialize(employee));
-                }
-                return null;
+        redisTemplate.execute((RedisCallback<Object>) redisConnection -> {
+            for (Employee employee: employees
+                 ) {
+                redisConnection.set(("Employee" +employee.getEmpNo()).getBytes(), SerializableUtil.serialize(employee));
             }
+            return null;
         });
         return employees;
     }

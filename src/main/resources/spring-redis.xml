@@ -41,10 +41,15 @@
     <bean id="redisCacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">
             <set>
-                <bean class="com.example.cache.RedisCache">
+                <bean class="com.example.cache.RedisCache" id="UserCache">
                     <property name="name" value="User"/>
                     <property name="redisTemplate" ref="redisTemplate"/>
                     <property name="timeout" value="6000"/>
+                </bean>
+                <bean class="com.example.cache.RedisCache" id="EmployeeCache">
+                    <property name="name" value="Employee"/>
+                    <property name="redisTemplate" ref="redisTemplate"/>
+                    <property name="timeout" value="600"/>
                 </bean>
             </set>
         </property>

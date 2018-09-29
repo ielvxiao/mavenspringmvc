@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Created by tl on 17/2/28.

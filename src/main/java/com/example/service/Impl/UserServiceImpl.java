@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService {
 
     private RedisCache redisCache;
 
+    @CacheEvict(value = "User", key = "'User' + #user.getId()", beforeInvocation = true)
     public Integer updateUser(User user) {
         return userDao.updateUser(user);
     }
 
     @CacheEvict(value = "User", beforeInvocation=true, key = "'User' + #id")
-    @Override
     public Integer deleteUser(Integer id) {
         return userDao.deleteUser(id);
     }
@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
     @CacheEvict(value = "User", key = "'User' + #user.getId()", beforeInvocation = true)
     public Integer addUser(User user) {
         LOGGER.debug("添加的用户id为{}",user.getId());
-        redisCache.put("User" + user.getId(), user);
         return userDao.addUser(user);
     }
 }

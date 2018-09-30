@@ -14,6 +14,8 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,13 +33,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 //    private RedisCache redisCache;
     @Autowired
     private RedisTemplate redisTemplate;
+
     @Override
     public List<Employee> selectEmployeeByIds(List<Integer> ids) {
-        List<Employee> employees = employeeDao.selectEmployeeByIds(ids);
-        redisTemplate.execute((RedisCallback<Object>) redisConnection -> {
-            for (Employee employee: employees
-                 ) {
-                redisConnection.set(("Employee" +employee.getEmpNo()).getBytes(), SerializableUtil.serialize(employee));
+        List<Employee> employees = new ArrayList<>();
+//        List<Employee> employees = employeeDao.selectEmployeeByIds(ids);
+        redisTemplate.executePipelined((RedisCallback<Object>) redisConnection -> {
+            Iterator<Integer> iterator = ids.iterator();
+            while (iterator.hasNext()) {
+                int id = iterator.next();
+                byte[] bytes = redisConnection.get(("Employee" + id).getBytes());
+                System.out.println(bytes);
+                if (bytes != null) {
+                    employees.add((Employee) SerializableUtil.unserialize(bytes));
+                } else {
+                    employees.add(selectEmployeeById(id));
+                }
             }
             return null;
         });

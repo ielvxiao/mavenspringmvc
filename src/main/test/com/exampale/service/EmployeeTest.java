@@ -25,13 +25,12 @@ public class EmployeeTest {
     @Test
     public void selectEmployeeByIds() {
         List<Integer> list = new ArrayList<>();
-        for (int i = 10500; i < 10550; i++) {
+        for (int i = 10001; i < 10011; i++) {
             list.add(i);
         }
         List<Employee> employees = employeeService.selectEmployeeByIds(list);
         for (Employee employee: employees
              ) {
-            System.out.println(employee);
         }
     }
 

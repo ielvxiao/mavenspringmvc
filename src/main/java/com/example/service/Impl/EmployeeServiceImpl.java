@@ -37,28 +37,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> selectEmployeeByIds(List<Integer> ids) {
         List<Employee> employees = new ArrayList<>();
-//        List<Employee> employees = employeeDao.selectEmployeeByIds(ids);
-        redisTemplate.executePipelined((RedisCallback<Object>) redisConnection -> {
-            Iterator<Integer> iterator = ids.iterator();
-            while (iterator.hasNext()) {
-                int id = iterator.next();
-                byte[] bytes = redisConnection.get(("Employee" + id).getBytes());
-                System.out.println(bytes);
-                if (bytes != null) {
-                    employees.add((Employee) SerializableUtil.unserialize(bytes));
-                } else {
-                    employees.add(selectEmployeeById(id));
-                }
-            }
-            return null;
-        });
+        for (Integer id: ids
+             ) {
+            employees.add(selectEmployeeById(id));
+        }
         return employees;
     }
 
     @Cacheable(value = "Employee",key = "'Employee' + #id")
     @Override
     public Employee  selectEmployeeById(int id) {
-        System.out.println("~~~~~这个应该是没有使用缓存~~~~~~");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return employeeDao.selectEmployeeById(id);
     }
 

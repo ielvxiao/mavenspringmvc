@@ -7,11 +7,11 @@ import com.example.domain.User;
  */
 public interface UserService {
 
-    User selectUserById(Integer id);
+    User selectUserById(int id);
 
-    Integer addUser(User user);
+    User addUser(User user);
 
-    Integer updateUser(User user);
+    User updateUser(User user);
 
     Integer deleteUser(Integer id);
 }

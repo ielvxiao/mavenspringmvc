@@ -26,13 +26,13 @@ public class UserController {
 
     @RequestMapping("/add")
     @ResponseBody
-    public Integer addUser(User user) {
+    public User addUser(User user) {
         return userService.addUser(user);
     }
 
     @RequestMapping("/update")
     @ResponseBody
-    public Integer updateUser(User user) {
+    public User updateUser(User user) {
         return userService.updateUser(user);
     }
 

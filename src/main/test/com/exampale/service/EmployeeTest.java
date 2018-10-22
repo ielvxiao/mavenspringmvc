@@ -29,9 +29,7 @@ public class EmployeeTest {
             list.add(i);
         }
         List<Employee> employees = employeeService.selectEmployeeByIds(list);
-        for (Employee employee: employees
-             ) {
-        }
+        System.out.println(employees);
     }
 
     @Test

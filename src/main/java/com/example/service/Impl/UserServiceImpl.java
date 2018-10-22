@@ -22,8 +22,6 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public static final String CACHE_NAME = "user";
-
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
@@ -31,9 +29,10 @@ public class UserServiceImpl implements UserService {
 
     private RedisCache redisCache;
 
-    @CacheEvict(value = "User", key = "'User' + #user.getId()", beforeInvocation = true)
-    public Integer updateUser(User user) {
-        return userDao.updateUser(user);
+    @CachePut(value = "User", key = "'User' + #user.id", condition = "#result != null")
+    public User updateUser(User user) {
+        userDao.updateUser(user);
+        return userDao.selectUserById(user.getId());
     }
 
     @CacheEvict(value = "User", beforeInvocation=true, key = "'User' + #id")
@@ -47,7 +46,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Cacheable(value = "User",key = "'User' + #id")
-    public User selectUserById(Integer id) {
+    public User selectUserById(int id) {
         LOGGER.debug("id为{}",id);
         return userDao.selectUserById(id);
     }
@@ -57,9 +56,11 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
-    @CacheEvict(value = "User", key = "'User' + #user.getId()", beforeInvocation = true)
-    public Integer addUser(User user) {
+    @CachePut(value = "User", key = "'User' + #user.id", condition = "#result != null")
+    public User addUser(User user) {
         LOGGER.debug("添加的用户id为{}",user.getId());
-        return userDao.addUser(user);
+        int rows = userDao.addUser(user);
+        LOGGER.debug("更新了{}行",rows);
+        return userDao.selectUserById(user.getId());
     }
 }

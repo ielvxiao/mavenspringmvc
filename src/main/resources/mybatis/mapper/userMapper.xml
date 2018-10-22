@@ -9,7 +9,7 @@
         <result column="AGE" property="age" jdbcType="INTEGER"/>
     </resultMap>
     <!--&lt;!&ndash; 查询单条记录 &ndash;&gt;-->
-    <select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
+    <select id="selectUserById" resultMap="BaseResultMap">
         SELECT * FROM user WHERE id = #{id}
     </select>
     <insert id="addUser" parameterType="com.example.domain.User">

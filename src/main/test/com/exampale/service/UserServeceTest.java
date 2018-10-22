@@ -27,7 +27,8 @@ public class UserServeceTest {
 
     @Test
     public void selectUserById() {
-    userService.selectUserById(11);
+        System.out.println(userService.selectUserById(1));
+
     }
 
     @Test

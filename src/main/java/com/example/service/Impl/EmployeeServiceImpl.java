@@ -34,13 +34,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Cacheable(value = "Employee", key = "#ids")
     @Override
     public List<Employee> selectEmployeeByIds(List<Integer> ids) {
-        List<Employee> employees = new ArrayList<>();
-        for (Integer id: ids
-             ) {
-            employees.add(selectEmployeeById(id));
-        }
+        List<Employee> employees = employeeDao.selectEmployeeByIds(ids);
         return employees;
     }
 

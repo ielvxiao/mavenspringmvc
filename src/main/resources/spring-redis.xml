@@ -1,6 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -12,10 +12,24 @@
     <context:property-placeholder location="classpath*:property/redis.properties" ignore-unresolvable="true"/>
 
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--最大空闲数-->
         <property name="maxIdle" value="${redis.maxIdle}"/>
+        <!--最大连接数-->
         <property name="maxTotal" value="${redis.maxTotal}"/>
+        <!--最大等待时间-->
         <property name="maxWaitMillis" value="${redis.maxWait}"/>
+        <!--当调用borrow Object方法时，是否进行有效性检查-->
         <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+        <!--最小能够保持idel状态的对象数  -->
+        <property name="minIdle" value="${redis.minIdle}"/>
+        <!--当调用return Object方法时，是否进行有效性检查-->
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+        <!--“空闲链接”检测线程，检测的周期，毫秒数。如果为负值，表示不运行“检测线程”。默认为-1.-->
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}"/>
+        <!--向调用者输出“链接”对象时，是否检测它的空闲超时；-->
+        <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
+        <!--对于“空闲链接”检测线程而言，每次检测的链接资源的个数。默认为3.-->
+        <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}"/>
     </bean>
 
 

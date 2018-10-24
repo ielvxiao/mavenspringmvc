@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-kafka="http://www.springframework.org/schema/integration/kafka"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration/kafka http://www.springframework.org/schema/integration/kafka/spring-integration-kafka.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:property-placeholder location="classpath*:property/kafka.properties" ignore-unresolvable="true"/>
+    <!-- 生产消息 -->
+    <!--<int:channel id="inputToKafka">-->
+        <!--<int:queue/>-->
+    <!--</int:channel>-->
+
+    <!--&lt;!&ndash; auto-startup容器刷新的时候，是否启动该适配器类 &ndash;&gt;-->
+    <!--<int-kafka:outbound-channel-adapter id="kafkaOutboundChannelAdapter"-->
+                                        <!--kafka-template="kafkaTemplate"-->
+                                        <!--auto-startup="true"-->
+                                        <!--channel="inputToKafka">-->
+        <!--<int:poller default="true" fixed-delay="50" time-unit="MILLISECONDS"/>-->
+    <!--</int-kafka:outbound-channel-adapter>-->
+    <bean id="produceProperties" class="java.util.HashMap">
+        <constructor-arg>
+            <!--更多参数请见org.apache.kafka.clients.producer.ProducerConfig-->
+            <map>
+                <!--kfka服务地址，可能是集群-->
+                <entry key="bootstrap.servers" value="${broker.address}"/>
+                <!--#消息的确认模式
+                    # 0：不保证消息的到达确认，只管发送，低延迟但是会出现消息的丢失，在某个server失败的情况下，有点像TCP
+                    # 1：发送消息，并会等待leader 收到确认后，一定的可靠性
+                    # -1：发送消息，等待leader收到确认，并进行复制操作后，才返回，最高的可靠性-->
+                <entry key="acks" value="all"/>
+                <!--发送失败的重试次数-->
+                <entry key="retries" value="3"/>
+                <!--一次批量发送给broker的大小-->
+                <entry key="batch.size" value="16384"/>
+                <!--发送给broker的延迟，以累计更大的批量发送-->
+                <entry key="linger.ms" value="1"/>
+                <!--发送给broker前的缓存大小-->
+                <entry key="buffer.memory" value="33554432"/>
+                <entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
+                <entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="defaultKafkaProducerFactory" class="org.springframework.kafka.core.DefaultKafkaProducerFactory">
+        <constructor-arg ref="produceProperties"/>
+    </bean>
+
+    <bean id="kafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
+        <constructor-arg ref="defaultKafkaProducerFactory"/>
+        <!--配置topic-->
+        <property name="defaultTopic" value="test"/>
+    </bean>
+</beans>

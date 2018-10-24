@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by tl on 17/2/28.
@@ -116,6 +117,11 @@ public class RedisCache implements Cache {
                 return null;
             }
         }
+    }
+
+    @Override
+    public <T> T get(Object o, Callable<T> callable) {
+        return null;
     }
 
     /*

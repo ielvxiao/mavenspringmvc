@@ -34,42 +34,42 @@
 
 
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <constructor-arg name="clusterConfig" ref="redisClusterConfiguration"/>
+        <constructor-arg name="sentinelConfig" ref="sentinelConfiguration"/>
         <constructor-arg name="poolConfig" ref="poolConfig"/>
+        <property name="password" value="${redis.pass}"/>
     </bean>
 
-    <bean id="redisClusterConfiguration"
-          class="org.springframework.data.redis.connection.RedisClusterConfiguration">
-        <property name="maxRedirects" value="3"/>
-        <property name="clusterNodes">
+    <bean id="sentinelConfiguration" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+
+        <property name="master">
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+                <property name="name" value="${redis.sentinel.mastername}"/>
+            </bean>
+        </property>
+        <property name="sentinels">
             <set>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster0.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster0.port}"/>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host"
+                                     value="${redis.sentinel1.address}"/>
+                    <constructor-arg name="port"
+                                     value="${redis.sentinel1.port}"/>
                 </bean>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster1.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster1.port}"/>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host"
+                                     value="${redis.sentinel2.address}"/>
+                    <constructor-arg name="port"
+                                     value="${redis.sentinel2.port}"/>
                 </bean>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster2.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster2.port}"/>
-                </bean>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster3.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster3.port}"/>
-                </bean>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster4.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster4.port}"/>
-                </bean>
-                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
-                    <constructor-arg name="host" value="${redis.cluster5.address}"/>
-                    <constructor-arg name="port" value="${redis.cluster5.port}"/>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host"
+                                     value="${redis.sentinel3.address}"/>
+                    <constructor-arg name="port"
+                                     value="${redis.sentinel3.port}"/>
                 </bean>
             </set>
         </property>
     </bean>
+
     <!-- redis操作模板，面向对象的模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>

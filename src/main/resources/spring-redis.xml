@@ -98,4 +98,11 @@
             </set>
         </property>
     </bean>
+
+    <!--设置自增长id-->
+    <bean id="redisAtomicLong" class="org.springframework.data.redis.support.atomic.RedisAtomicLong">
+        <constructor-arg name="redisCounter" value="someKey"/>
+        <constructor-arg name="factory" ref="connectionFactory"/>
+    </bean>
+
 </beans>

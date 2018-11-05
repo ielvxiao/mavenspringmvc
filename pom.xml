@@ -154,6 +154,23 @@
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper-version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jboss.netty/netty -->
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.2.10.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.4</version>
+        </dependency>
     </dependencies>
 
     <build>

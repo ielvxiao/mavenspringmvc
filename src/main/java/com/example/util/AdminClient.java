@@ -21,7 +21,7 @@ public class AdminClient implements Watcher {
     private ZooKeeper zk;
 
     private void startZk() throws IOException {
-        zk = new ZooKeeper("35.201.207.143:2181", 5000, this);
+        zk = new ZooKeeper("lvxiao.master.com:2181", 5000, this);
     }
 
     @Override

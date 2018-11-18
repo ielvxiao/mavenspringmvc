@@ -13,5 +13,6 @@ public class Provider {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("dubbo_provider.xml");
         context.start();
         System.in.read(); // 按任意键退出
+
     }
 }

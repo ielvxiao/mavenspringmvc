@@ -8,4 +8,5 @@ package com.example.service;
  */
 public interface DubboTestService {
     String sayHello(String name);
+
 }

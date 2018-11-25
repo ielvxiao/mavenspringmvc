@@ -11,6 +11,7 @@ import com.example.service.DubboTestService;
 public class DubboTestServiceImpl implements DubboTestService {
     @Override
     public String sayHello(String name) {
+        System.out.println("客户端调用了一次服务");
         return "Hello " + name;
     }
 }

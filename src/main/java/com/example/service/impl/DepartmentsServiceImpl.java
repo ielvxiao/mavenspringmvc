@@ -1,4 +1,4 @@
-package com.example.service.Impl;
+package com.example.service.impl;
 
 import com.example.dao.DepartmentsDao;
 import com.example.domain.webservice.Departments;
